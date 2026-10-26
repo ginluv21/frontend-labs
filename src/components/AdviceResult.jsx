@@ -1,7 +1,8 @@
 import { Button } from '@/shared/Button'
+import { SaveButton } from '@/components/SaveButton'
 
-function AdviceText({ text }) {
-  return <blockquote>{text}</blockquote>
+function AdviceText({ source, text }) {
+  return <div><blockquote>{text}</blockquote><SaveButton source={source} text={text} /></div>
 }
 
 export function AdviceResult({ result, onRetry }) {
@@ -12,7 +13,7 @@ export function AdviceResult({ result, onRetry }) {
       {result.status === 'loading' && <p role="status">Сова ещё прыгает. Мысль на подходе...</p>}
       {result.status === 'error' && <div role="alert"><p>{result.error}</p><Button onClick={onRetry}>Повторить</Button></div>}
       {result.status === 'empty' && <p>Ответ пришёл, но советов нет. Даже сове нечего добавить.</p>}
-      {result.data.map(item => <AdviceText key={item.id} text={item.text} />)}
+      {result.data.map(item => <AdviceText key={`${item.id}:${item.text}`} source={result.id} text={item.text} />)}
       {result.status === 'success' && <p className="source-method">{result.id === 'owl' ? 'Сказала и поскакала.' : 'Оригинал на английском'}</p>}
     </section>
   )

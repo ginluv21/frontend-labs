@@ -1,51 +1,28 @@
-import { useState } from 'react'
-import { useAdvice } from '@/hooks/useAdvice'
-import { AdviceForm } from '@/components/AdviceForm'
-import { AdviceResult } from '@/components/AdviceResult'
+import { NavLink, Route, Routes } from 'react-router-dom'
+import { AdvicePage } from '@/pages/AdvicePage'
+import { SavedPage } from '@/pages/SavedPage'
+import { SourceFilter } from '@/components/SourceFilter'
 import { Disclaimer } from '@/components/Disclaimer'
-import { Owl } from '@/components/Owl'
 import './App.css'
 
 export default function App() {
-  const [question, setQuestion] = useState('')
-  const [error, setError] = useState('')
-  const [submittedQuestion, setSubmittedQuestion] = useState('')
-  const { results, loading, reload } = useAdvice()
-
-  function handleSubmit(event) {
-    event.preventDefault()
-    if (loading) return
-    if (!question.trim()) {
-      setError('Сначала напиши вопрос!')
-      return
-    }
-    setError('')
-    setSubmittedQuestion(question.trim())
-    reload(undefined, undefined, question.trim())
-  }
-
   return (
     <main>
       <header>
         <p>★ ДОБРО ПОЖАЛОВАТЬ В МОЙ ИНТЕРНЕТ ★</p>
         <h1>СОВА НА СКАКАЛКЕ</h1>
         <p className="moving-text">УГУ! Советы бесплатно. Польза не гарантируется.</p>
+        <nav aria-label="Страницы сайта">
+          <NavLink to="/" end>Спросить сову</NavLink>
+          <NavLink to="/saved">Копилка</NavLink>
+        </nav>
       </header>
-      <Owl loading={loading} />
-      <h2>Не знаешь, что делать? Сова тоже.</h2>
-      <p>Но совет всё равно даст.</p>
-      <AdviceForm
-        question={question}
-        onQuestionChange={setQuestion}
-        onSubmit={handleSubmit}
-        error={error}
-        loading={loading}
-      />
-      {results.map(result => <AdviceResult
-        key={result.id}
-        result={result}
-        onRetry={() => reload(result.id, undefined, submittedQuestion)}
-      />)}
+      <SourceFilter />
+      <Routes>
+        <Route path="/" element={<AdvicePage />} />
+        <Route path="/saved" element={<SavedPage />} />
+        <Route path="*" element={<section className="result"><h2>Сова сюда не допрыгала</h2><p>Такой страницы нет.</p><NavLink to="/">На главную</NavLink></section>} />
+      </Routes>
       <footer>
         <Disclaimer />
         <p>🚧 САЙТ ВЕЧНО СТРОИТСЯ 🚧</p>
