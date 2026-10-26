@@ -9,7 +9,7 @@ header { padding: 18px 12px; background: #ff43bb; border-bottom: 5px ridge #ffb7
 h1 { margin: 12px 0; color: yellow; font-size: clamp(28px, 6vw, 46px); text-shadow: 3px 3px #42006c; }
 h2 { font-size: 21px; }
 .moving-text { animation: wobble 1.5s steps(2) infinite; font-weight: bold; }
-.owl { width: 176px; height: 180px; margin: 24px auto; background: url("/owl-poses.png") -1052px -410px / 1228.8px 819.2px; }
+.owl { width: 184px; height: 180px; margin: 0 auto; background: url("/owl-poses.png") -1045px -410px / 1228.8px 819.2px no-repeat; }
 form, .result { margin: 20px; padding: 20px; border: 4px ridge #b69bdb; }
 form { background: #39ebed; }
 label { display: block; margin-bottom: 10px; font-weight: bold; }
@@ -34,3 +34,15 @@ footer > p:last-of-type { background: #260045; color: yellow; padding: 8px; }
 .disclaimer { text-align: left; overflow-wrap: anywhere; }
 .disclaimer h2 { text-align: center; font-size: 15px; }
 .disclaimer p { margin: 16px 0; }
+
+.retro-button:disabled { cursor: wait; opacity: .6; }
+.retro-button:disabled:hover { background: #ff65bc; }
+.result .source-method, .form-note { font-size: 12px; line-height: 1.5; }
+.result blockquote { margin: 16px 0; font-size: 20px; line-height: 1.5; white-space: pre-wrap; }
+
+.owl-show { margin: 24px 20px; }
+.owl-caption { max-width: 530px; min-height: 88px; margin: 12px auto 0; font: bold 14px/1.5 'Courier New', monospace; }
+.is-loading .owl { animation: owl-jump .7s steps(2) infinite; }
+.jump-label { display: inline-block; padding: 3px 10px; color: #7c005c; background: #ff94dc; border: 2px dashed #7c005c; font: bold 11px 'Courier New', monospace; animation: wobble 1s steps(2) infinite; }
+@keyframes owl-jump { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
+@media (prefers-reduced-motion: reduce) { .owl { width: 184px !important; background-position: -1045px -410px !important; } }
