@@ -11,3 +11,5 @@ AGENTS.md
 .DS_Store
 .env
 .env.*
+
+.data/

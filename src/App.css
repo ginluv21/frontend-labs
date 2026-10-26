@@ -46,3 +46,12 @@ footer > p:last-of-type { background: #260045; color: yellow; padding: 8px; }
 .jump-label { display: inline-block; padding: 3px 10px; color: #7c005c; background: #ff94dc; border: 2px dashed #7c005c; font: bold 11px 'Courier New', monospace; animation: wobble 1s steps(2) infinite; }
 @keyframes owl-jump { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-12px) rotate(3deg); } }
 @media (prefers-reduced-motion: reduce) { .owl { width: 184px !important; background-position: -1045px -410px !important; } }
+
+nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+nav a { padding: 8px 12px; background: #eeff78; border: 3px outset #ffb3dd; font-weight: bold; }
+nav a.active { background: #39ebed; border-style: inset; }
+.source-filter { margin: 20px; padding: 12px; border: 3px dashed #7c005c; background: #d6b4ff; }
+.source-filter label { margin-bottom: 6px; }
+.source-filter select { max-width: 100%; padding: 6px; font: inherit; background: #fff; color: #290052; border: 3px inset #c8aedb; }
+.save-control p { font-size: 12px; }
+.saved-page > p { margin: 16px 20px; }
