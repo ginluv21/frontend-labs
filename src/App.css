@@ -1,0 +1,36 @@
+main {
+  max-width: 760px;
+  margin: auto;
+  background: #eeff78;
+  border: 6px ridge #dcb4ff;
+  box-shadow: 8px 8px #18002d;
+}
+header { padding: 18px 12px; background: #ff43bb; border-bottom: 5px ridge #ffb7e5; overflow: hidden; }
+h1 { margin: 12px 0; color: yellow; font-size: clamp(28px, 6vw, 46px); text-shadow: 3px 3px #42006c; }
+h2 { font-size: 21px; }
+.moving-text { animation: wobble 1.5s steps(2) infinite; font-weight: bold; }
+.owl { width: 176px; height: 180px; margin: 24px auto; background: url("/owl-poses.png") -1052px -410px / 1228.8px 819.2px; }
+form, .result { margin: 20px; padding: 20px; border: 4px ridge #b69bdb; }
+form { background: #39ebed; }
+label { display: block; margin-bottom: 10px; font-weight: bold; }
+textarea { display: block; width: 100%; min-height: 90px; resize: vertical; padding: 10px; border: 3px inset #c8aedb; border-radius: 0; }
+.retro-button { margin-top: 16px; padding: 12px; max-width: 100%; background: #ff65bc; color: #280047; border: 4px outset #ffb3dd; font-weight: bold; cursor: pointer; }
+.retro-button:hover { background: yellow; }
+.retro-button:active { border-style: inset; }
+#error { padding: 8px; background: #fff; color: #99002e; font-weight: bold; }
+.result { background: #ffcef5; overflow-wrap: anywhere; }
+.result h2 { margin-top: 0; }
+.result p { font-size: 20px; line-height: 1.5; }
+footer { padding: 16px; border-top: 4px ridge #bfa0dc; background: #d6b4ff; font: 12px/1.6 'Courier New', monospace; }
+footer > p:last-of-type { background: #260045; color: yellow; padding: 8px; }
+@keyframes wobble { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+@media (max-width: 480px) {
+  body { padding: 8px; }
+  form, .result { margin: 12px; padding: 14px; }
+  h2 { padding: 0 10px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+
+.disclaimer { text-align: left; overflow-wrap: anywhere; }
+.disclaimer h2 { text-align: center; font-size: 15px; }
+.disclaimer p { margin: 16px 0; }

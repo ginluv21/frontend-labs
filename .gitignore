@@ -1,0 +1,11 @@
+node_modules/
+dist/
+package-lock.json
+.openai/
+.oxlintrc.json
+AGENTS.md
+*.log
+*.local
+.vscode/
+.idea/
+.DS_Store

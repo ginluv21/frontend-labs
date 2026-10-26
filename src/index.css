@@ -1,0 +1,14 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 20px;
+  color: #290052;
+  background: #330066;
+  background-image: radial-gradient(yellow 1px, transparent 1px);
+  background-size: 25px 25px;
+  font-family: 'Comic Sans MS', 'Trebuchet MS', sans-serif;
+  text-align: center;
+}
+button, textarea { font: inherit; }
+a { color: #1300ce; }
+:focus-visible { outline: 3px dashed #a00075; outline-offset: 4px; }
