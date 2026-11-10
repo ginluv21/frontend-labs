@@ -9,6 +9,6 @@ body {
   font-family: 'Comic Sans MS', 'Trebuchet MS', sans-serif;
   text-align: center;
 }
-button, textarea { font: inherit; }
+button, textarea, select, input { font: inherit; }
 a { color: #1300ce; }
 :focus-visible { outline: 3px dashed #a00075; outline-offset: 4px; }

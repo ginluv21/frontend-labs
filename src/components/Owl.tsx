@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
 
-const moments = [
+interface OwlMoment {
+  x: number
+  y: number
+  width?: number
+  text: string
+}
+
+const moments: OwlMoment[] = [
   { x: -164, y: -408, width: 160, text: 'Сова разминает лапки. Ответственность пока не размяла.' },
   { x: -880, y: -208, width: 176, text: 'Шутки шутками, смех смехом, но всё веселье заканчивается, когда сова на скакалке попадается.' },
   { x: -322, y: -408, width: 172, text: 'Вжих-вжих. Мысль взлетела. Ловим.' },
@@ -11,7 +18,7 @@ const moments = [
   { x: -375, y: -208, width: 172, text: 'Кажется, решение найдено. Сова сама в шоке.' },
 ]
 
-export function Owl({ loading }) {
+export function Owl({ loading }: { loading: boolean }) {
   const [step, setStep] = useState(0)
 
   useEffect(() => {
@@ -20,7 +27,8 @@ export function Owl({ loading }) {
     return () => clearInterval(timer)
   }, [loading])
 
-  const moment = loading ? moments[step] : { x: -1045, y: -410, text: 'Сова попалась. Теперь послушаем, что скажет.' }
+  const idle: OwlMoment = { x: -1045, y: -410, text: 'Сова попалась. Теперь послушаем, что скажет.' }
+  const moment = loading ? moments[step] ?? idle : idle
 
   return (
     <figure className={`owl-show ${loading ? 'is-loading' : ''}`}>

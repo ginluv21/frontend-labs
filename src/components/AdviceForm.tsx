@@ -1,6 +1,15 @@
 import { Button } from '@/shared/Button'
+import type { FormEvent } from 'react'
 
-export function AdviceForm({ question, onQuestionChange, onSubmit, error, loading }) {
+interface AdviceFormProps {
+  question: string
+  onQuestionChange: (question: string) => void
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void
+  error: string
+  loading: boolean
+}
+
+export function AdviceForm({ question, onQuestionChange, onSubmit, error, loading }: AdviceFormProps) {
   return (
     <form onSubmit={onSubmit}>
       <label htmlFor="question">Твой вопрос к сове:</label>
