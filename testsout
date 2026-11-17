@@ -1,0 +1,179 @@
+Лабораторная 8 - настоящий вывод повторного запуска
+17.11.2026 12:53:50 Asia/Novosibirsk
+Playwright hosted проверяет опубликованный сайт с подмененными ответами API.
+
+$ npm test -- --verbose --runInBand
+
+npm notice run frontend-labs@0.0.0 test
+npm notice run jest --verbose --runInBand
+Test Suites: 4 passed, 4 total
+Tests:       23 passed, 23 total
+Snapshots:   0 total
+Time:        2.252 s, estimated 12 s
+Ran all test suites.
+
+Код завершения: 0
+
+$ npm run test:server
+
+npm notice run frontend-labs@0.0.0 test:server
+npm notice run node --test tests/owl.test.js
+OpenRouter request openrouter/free
+OpenRouter response 400 2
+OpenRouter error 400
+OpenRouter request openrouter/free
+OpenRouter response 401 0
+OpenRouter error 401
+OpenRouter request openrouter/free
+OpenRouter response 403 1
+OpenRouter request openrouter/free
+OpenRouter response 402 1
+OpenRouter error 403
+OpenRouter error 402
+OpenRouter request openrouter/free
+OpenRouter response 404 0
+OpenRouter error 404
+OpenRouter request openrouter/free
+OpenRouter response 429 1
+OpenRouter error 429
+OpenRouter request openrouter/free
+✔ Без ключа сервер объясняет причину и не вызывает OpenRouter (42.764016ms)
+✔ Неправильный вопрос отклоняется до запроса к OpenRouter (3.677968ms)
+✔ Другой метод и чужой сайт отклоняются (0.869103ms)
+✔ Ошибка OpenRouter 400 имеет понятное сообщение (2.729984ms)
+✔ Ошибка OpenRouter 401 имеет понятное сообщение (7.153586ms)
+✔ Ошибка OpenRouter 403 имеет понятное сообщение (2.552015ms)
+✔ Ошибка OpenRouter 402 имеет понятное сообщение (1.284649ms)
+✔ Ошибка OpenRouter 404 имеет понятное сообщение (1.252158ms)
+✔ Ошибка OpenRouter 429 имеет понятное сообщение (1.867373ms)
+OpenRouter response 503 1002
+OpenRouter error 503
+OpenRouter request openrouter/free
+OpenRouter request error TypeError
+OpenRouter request openrouter/free
+OpenRouter request error TimeoutError
+OpenRouter request openrouter/free
+OpenRouter response 200 1
+OpenRouter request error SyntaxError
+OpenRouter request openrouter/free
+✔ Ошибка OpenRouter 503 имеет понятное сообщение (1006.854283ms)
+✔ Сетевой сбой, тайм-аут и повреждённый JSON различаются (3.029974ms)
+OpenRouter response 200 1001
+OpenRouter request openrouter/free
+OpenRouter response 200 0
+OpenRouter request openrouter/free
+OpenRouter response 200 0
+OpenRouter request openrouter/free
+OpenRouter response 200 0
+OpenRouter error 503
+OpenRouter request openrouter/free
+OpenRouter response 200 0
+OpenRouter request openrouter/free
+OpenRouter response 200 0
+OpenRouter request openrouter/free
+OpenRouter response 200 0
+OpenRouter request openrouter/free
+OpenRouter response 200 0
+OpenRouter request openrouter/free
+OpenRouter response 200 0
+OpenRouter request openrouter/free
+OpenRouter response 200 0
+OpenRouter request openrouter/free
+OpenRouter response 200 0
+✔ Временный сбой 503 повторяется один раз с общим тайм-аутом (1002.650662ms)
+✔ Пустой, заблокированный и обрезанный ответы не выдаются за успех (8.320741ms)
+✔ Текст возвращается без мыслей и ключа, вопрос передаётся OpenRouter (3.89658ms)
+✔ Платная модель отклоняется до внешнего запроса (2.195969ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2187.670115
+
+Код завершения: 0
+
+$ npm run test:e2e
+
+npm notice run frontend-labs@0.0.0 test:e2e
+npm notice run playwright test
+[WebServer] npm notice run frontend-labs@0.0.0 dev
+[WebServer] npm notice run vite --host 127.0.0.1 --port 4173 --strictPort
+[WebServer] (node:21022) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:21051) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 e2e/advice.spec.ts:11:1 › Пустой вопрос показывает ошибку (1.3s)
+  ✓  2 e2e/advice.spec.ts:17:1 › Совет сохраняется и появляется в копилке (1.8s)
+  ✓  3 e2e/advice.spec.ts:39:1 › Неверный лимит скрывает советы, исправление возвращает их (1.0s)
+
+  3 passed (6.0s)
+
+Код завершения: 0
+
+$ npm run test:e2e:hosted
+
+npm notice run frontend-labs@0.0.0 test:e2e:hosted
+npm notice run playwright test --config playwright.hosted.config.ts
+
+Running 3 tests using 1 worker
+
+(node:21233) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 e2e/advice.spec.ts:11:1 › Пустой вопрос показывает ошибку (2.6s)
+  ✓  2 e2e/advice.spec.ts:17:1 › Совет сохраняется и появляется в копилке (2.6s)
+  ✓  3 e2e/advice.spec.ts:39:1 › Неверный лимит скрывает советы, исправление возвращает их (1.7s)
+
+  3 passed (8.2s)
+
+Код завершения: 0
+
+$ npm run typecheck
+
+npm notice run frontend-labs@0.0.0 typecheck
+npm notice run tsc --noEmit
+
+Код завершения: 0
+
+$ npm run lint
+
+npm notice run frontend-labs@0.0.0 lint
+npm notice run oxlint
+
+Код завершения: 0
+
+$ npm run build
+
+npm notice run frontend-labs@0.0.0 build
+npm notice run npm run typecheck && vite build && node scripts/build-server.mjs
+npm notice run frontend-labs@0.0.0 typecheck
+npm notice run tsc --noEmit
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 154 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.61 kB │ gzip:   0.41 kB
+dist/assets/index-wazKAVw0.css   21.88 kB │ gzip:   5.79 kB
+dist/assets/index-B_LxmenE.js   378.62 kB │ gzip: 122.02 kB
+
+✓ built in 305ms
+Сервер совы и статические файлы собраны.
+
+Код завершения: 0
+
+Результаты всех команд:
+npm test -- --verbose --runInBand: УСПЕШНО (код 0)
+npm run test:server: УСПЕШНО (код 0)
+npm run test:e2e: УСПЕШНО (код 0)
+npm run test:e2e:hosted: УСПЕШНО (код 0)
+npm run typecheck: УСПЕШНО (код 0)
+npm run lint: УСПЕШНО (код 0)
+npm run build: УСПЕШНО (код 0)
+
+ВСЕ ПРОВЕРКИ ПРОШЛИ

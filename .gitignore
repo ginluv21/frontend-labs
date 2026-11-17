@@ -12,3 +12,5 @@ AGENTS.md
 .env.*
 !.env.example
 .data/
+playwright-report/
+test-results/

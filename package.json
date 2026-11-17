@@ -8,8 +8,15 @@
     "build": "npm run typecheck && vite build && node scripts/build-server.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
-    "test": "node --test",
-    "preview": "vite preview"
+    "test": "jest",
+    "preview": "vite preview",
+    "test:server": "node --test tests/owl.test.js",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:all": "npm test && npm run test:server && npm run test:e2e",
+    "test:e2e:hosted": "playwright test --config playwright.hosted.config.ts",
+    "test:e2e:hosted:ui": "playwright test --config playwright.hosted.config.ts --ui",
+    "test:e2e:hosted:headed": "playwright test --config playwright.hosted.config.ts --headed"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.105.0",
@@ -20,11 +27,17 @@
     "zustand": "^5.0.16"
   },
   "devDependencies": {
-    "typescript": "~5.9.3",
+    "@babel/core": "^7.29.13",
+    "@babel/preset-env": "^7.29.14",
+    "@babel/preset-typescript": "^7.29.7",
+    "@playwright/test": "^1.65.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "babel-jest": "^30.5.2",
+    "jest": "^30.5.2",
     "oxlint": "^1.88.0",
+    "typescript": "~5.9.3",
     "vite": "^8.3.4"
   }
 }
