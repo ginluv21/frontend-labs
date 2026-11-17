@@ -31,8 +31,8 @@ export function AdviceResult({ result, onRetry }: AdviceResultProps) {
   }
 
   return (
-    <section className="result" aria-live="polite" aria-busy={result.status === 'loading'}>
-      <h2>{result.title}</h2>
+    <section className={`result result-${result.id}`} aria-live="polite" aria-busy={result.status === 'loading'}>
+      <div className="result-heading"><span className="source-avatar" aria-hidden="true">{result.id === 'owl' ? <img src="/owl-idle.png" alt="" width="36" height="42" /> : 'K'}</span><div><span className="card-kicker">{result.id === 'owl' ? 'ПЕРНАТОЕ МНЕНИЕ' : 'НЕЗАВИСИМЫЙ ЭКСПЕРТ'}</span><h3>{result.title}</h3></div><span className="result-state">{result.status === 'loading' ? 'Думает' : result.status === 'error' ? 'Не долетело' : 'На связи'}</span></div>
       <p className="source-method">{result.method}</p>
       {content}
       {result.status === 'success' && <p className="source-method">{result.id === 'owl' ? 'Сказала и поскакала.' : 'Оригинал на английском'}</p>}

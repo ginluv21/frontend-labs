@@ -1,24 +1,17 @@
 import { useEffect, useState } from 'react'
 
-interface OwlMoment {
-  x: number
-  y: number
-  width?: number
-  text: string
-}
-
-const moments: OwlMoment[] = [
-  { x: -164, y: -408, width: 160, text: 'Сова разминает лапки. Ответственность пока не размяла.' },
-  { x: -880, y: -208, width: 176, text: 'Шутки шутками, смех смехом, но всё веселье заканчивается, когда сова на скакалке попадается.' },
-  { x: -322, y: -408, width: 172, text: 'Вжих-вжих. Мысль взлетела. Ловим.' },
-  { x: -500, y: -408, width: 176, text: 'Сова приземлилась. Самооценка - не очень.' },
-  { x: -178, y: -208, text: 'Сова уже всё поняла. Сейчас попробует понять правильно.' },
-  { x: -548, y: -208, width: 176, text: 'Угу. Это был многозначительный угу. Запиши.' },
-  { x: -1045, y: -208, text: 'Сова задумалась. Не выключайте скакалку.' },
-  { x: -375, y: -208, width: 172, text: 'Кажется, решение найдено. Сова сама в шоке.' },
+const moments = [
+  'Сова разминает лапки. Ответственность пока не размяла.',
+  'Шутки шутками, смех смехом, но всё веселье заканчивается, когда сова на скакалке попадается.',
+  'Вжих-вжих. Мысль взлетела. Ловим.',
+  'Сова приземлилась. Самооценка - не очень.',
+  'Сова уже всё поняла. Сейчас попробует понять правильно.',
+  'Угу. Это был многозначительный угу. Запиши.',
+  'Сова задумалась. Не выключайте скакалку.',
+  'Кажется, решение найдено. Сова сама в шоке.',
 ]
 
-export function Owl({ loading }: { loading: boolean }) {
+export function Owl({ loading, ready }: { loading: boolean; ready: boolean }) {
   const [step, setStep] = useState(0)
 
   useEffect(() => {
@@ -27,13 +20,18 @@ export function Owl({ loading }: { loading: boolean }) {
     return () => clearInterval(timer)
   }, [loading])
 
-  const idle: OwlMoment = { x: -1045, y: -410, text: 'Сова попалась. Теперь послушаем, что скажет.' }
-  const moment = loading ? moments[step] ?? idle : idle
+  const animation = loading ? 'jump' : ready ? 'happy' : 'idle'
+  const caption = loading
+    ? moments[step] ?? 'Сова задумалась. Не выключайте скакалку.'
+    : ready ? 'Угу! Совет готов. Сова довольна собой.' : 'Сова моргает. Ждёт вопрос и верит в лучшее.'
 
   return (
     <figure className={`owl-show ${loading ? 'is-loading' : ''}`}>
-      <div className="owl" role="img" aria-label="Пурпурная сова на скакалке" style={{ width: moment.width || 184, backgroundPosition: `${moment.x}px ${moment.y}px` }} />
-      <figcaption className="owl-caption" role="status">{moment.text}</figcaption>
+      <picture>
+        <source media="(prefers-reduced-motion: reduce)" srcSet="/owl-idle.png" />
+        <img className="owl-animation" src={`/owl-${animation}.gif`} alt="Пурпурная сова" width="256" height="292" />
+      </picture>
+      <figcaption className="owl-caption" role="status">{caption}</figcaption>
       {loading && <span className="jump-label" aria-hidden="true">ВЖИХ-ВЖИХ...</span>}
     </figure>
   )
